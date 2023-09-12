@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function MinsToHours() {
+        const [amount, setAmount] = React.useState(0);
+        const onChange = (event) => {
+            setAmount(event.target.value);
+        };
+        const [flip, setFlip] = React.useState(false);
+        const onFlip = () => {
+            onReset()
+            setFlip((current) => !current)
+        }
+        const onReset = () => setAmount(0)
+        return (
+            <div>
+                <h3>Mins to Hours </h3>
+                <label htmlfor="mins">Mins</label>
+                <input
+                    value={flip ? amount * 60 : amount}
+                    onChange={onChange}
+                    id="mins" placeholder="mins"
+                    type="number"
+                    disabled={flip}
+                />
+
+                <label htmlfor="hours">Hours</label>
+                <input
+                    value={flip ? amount : Math.round(amount / 60)}
+                    onChange={onChange}
+                    id="hours"
+                    placeholder="hours"
+                    type="number"
+                    disabled={!flip} />
+
+                <div>
+                    <button onClick={onFlip}>Flip</button>
+                    <button onClick={onReset}>Reset</button>
+
+                </div>
+
+            </div>
+        );
+    }
+
+    function KmToMiles() {
+        return (
+            <h3>KM to Miles </h3>
+        )
+    }
+    function App() {
+        const [selectedConverterIndex, selectConverter] = React.useState("0");
+        const onSelect = (event) => {
+            selectConverter(event.target.value)
+        }
+        return (
+            <div>
+                <h2>Choose your converter</h2>
+                <select onChange={onSelect} value={selectedConverterIndex}>
+                    <option value="0"> Mins & Hours</option>
+                    <option value="1"> Km & Miles</option>
+                </select>
+                {
+                    selectedConverterIndex === "0" ? <MinsToHours /> : <KmToMiles />
+                }
+            </div >
+        );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+</script>
+
+</html>

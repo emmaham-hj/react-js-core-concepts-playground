@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+        const [counter, modifier] = React.useState(0);
+        const onClick = () => {
+            // setting the count to counter + 1 and rerender the page.
+            // modifier(counter + 1)
+            modifier((current) => current + 1);
+        };
+        // console.log(data)
+        // // [undefined -> your data, f -> function to change this data] 
+        return (
+            <div>
+                <h3>Total Click: {counter}</h3>
+                <button onClick={onClick}>Click Me</button>
+            </div>
+        );
+    }
+    ReactDOM.render(<App />, root);
+</script>
+
+</html>

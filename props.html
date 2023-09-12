@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<script type="text/babel">
+    function Btn({ potato, style, onClick }) {
+        return (
+            <button
+                style={style}
+                onClick={onClick}
+            >{potato}</button>
+        )
+    }
+    function ConfirmBtn() {
+        return (
+            <button
+            >Confirm</button>
+        )
+    }
+    Btn.propTypes = {
+        potato: PropTypes.string,
+        onClick: PropTypes.func
+    };
+    function App() {
+        const [value, setValue] = React.useState("Save");
+        const changeValue = () => setValue(value == "Save" ? "Revert" : "Save");
+        return (
+            <div>
+                <h4>Props is a way to send data from parent component to a child component.</h4>
+                <div>
+                    <Btn potato={value}
+                        style={{
+                            backgroundColor: "tomato",
+                            color: "white",
+                            padding: "10px 20px",
+                            borderRadius: 10,
+                        }}
+                        onClick={changeValue}
+
+                    />
+                    <Btn potato="Confirm"
+                        style={{
+                            backgroundColor: "green",
+                            color: "white",
+                            padding: "10px 20px",
+                            borderRadius: 10,
+                        }} />
+                </div>
+            </div >
+        );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+</script>
+
+</html>

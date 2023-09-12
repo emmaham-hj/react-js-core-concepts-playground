@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+    const root = document.getElementById("root");
+
+    /* const h3 = React.createElement("h3", {
+         onMouseEnter: () => console.log("Mouse ENter")
+     }, "Hello, I am a span");
+ 
+     const btn = React.createElement("button", {
+         onClick: () => console.log("I am clicked")
+     }, "Click me");
+ 
+     const container = React.createElement("div", null, [h3, btn]);
+ 
+     ReactDOM.render(container, root);
+ 
+     */
+
+    // Using JSX Javascript sytax extension -> able to create element more comfortable that looks lkie html element.
+
+    const Title = () => (<h3 id="title" onMouseEnter={() => console.log("Title is clicked.")}>Title</h3>);
+    // => Same thing
+    // function Title() { return (<h3 id="title" onMouseEnter={() => console.log("Title is clicked.")}>Title</h3>) };
+
+    const Button = () => (<button
+        style={{
+            backgroundColor: "tomato"
+        }}
+        onClick={() => console.log("I am Clciked.")}
+    >Click me button</button>);
+
+    const Container = () => <div>
+        <button>Normal Button</button>
+        <Title />
+        <Button />
+    </div>
+
+    ReactDOM.render(<Container />, root);
+</script>
+
+</html>
